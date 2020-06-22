@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Launchbase" src="https://storage.googleapis.com/golden-wind/bootcamp-launchbase/logo.png" width="300px" />
+    <img alt="Launchbase" src="https://storage.googleapis.com/golden-wind/bootcamp-launchbase/logo.png" width="300px"/>
 </h1>
 <h2 align="center">Desafio: Foodfy</h2>
 
@@ -16,14 +16,20 @@
 <img src="readme/projeto-exemplo.gif" width="760" height="380">
 </p>
 
-## Tecnologias utilizadas
+## Tecnologias utilizadas Parte 1
 - HTML
 - CSS
 - Javascript
 
-## Objetivo
+## Objetivo Parte 1
 
 Praticar os conceitos visto nas aulas do bootcamp. Dando atenção
 maior as boas práticas de organização, sintaxe, posicionamento de 
 elementos com CSS, semântica no HTML e um pouco de manipulação
-da DOM com Javascript. 
+da DOM com Javascript.
+
+## Resultado Parte 1
+
+<p align="center">
+<img src="readme/foodfy.gif" width="760" height="380">
+</p>
