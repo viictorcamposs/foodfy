@@ -9,11 +9,11 @@
 
 ## Desafio
 
-- A primeira parte do desafio consite em **criar todo o Front-End** das páginas com **HTML, CSS e Javascript**. No exemplo mostro o layout que foi passado com posicionamento e espaçamento entre elementos.
+- A primeira parte do desafio consiste em **criar todo o Front-End** das páginas com **HTML, CSS e Javascript**. No exemplo mostro o layout que foi passado com posicionamento e espaçamento entre elementos.
 
 ### Exemplo
 <p align="center">
-<img src="readme/projeto-exemplo.gif" width="500" height="250">
+<img src="readme/projeto-exemplo.gif" width="760" height="380">
 </p>
 
 ## Tecnologias utilizadas
