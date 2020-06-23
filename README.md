@@ -13,7 +13,7 @@
 
 ### Exemplo
 <p align="center">
-<img src="readme/projeto-exemplo.gif" width="760" height="380">
+<img src="readme/project-image.png" width="760" height="380">
 </p>
 
 ## Tecnologias utilizadas Parte 1
