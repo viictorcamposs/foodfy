@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+a {
+  text-decoration: none;
+}
+
+/* ======== HEADER ======== */
+header {
+  width: 100%;
+  height: 95px;
+  position: relative;
+  width: 940px;
+  margin: 0 auto;
+}
+header nav {
+  display: flex;
+  align-items: center;
+  position: absolute;
+
+  top: 36px;
+}
+header nav .links {
+  margin-left: 85px;
+}
+header nav .links a {
+  color: #111111;
+  font-size: 16px;
+  line-height: 19px;
+
+  width: 42px;
+  height: 19px;
+
+  margin-left: 35px;
+  transition: 300ms;
+}
+header nav a:hover {
+  opacity: 0.8;
+  transition: 300ms;
+}
+header nav .links .selected {
+  font-weight: bold;
+}
+
+/* ======== SECTION ======== */
+section {
+  width: 940px;
+
+  margin: 0 auto;
+}
+section .cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 20px;
+  column-gap: 20px;
+}
+section .cards .card {
+  margin-bottom: 28px;
+  width: 100%;
+}
+section .cards .card .card-img img {
+  width: 300px;
+  height: 140px;
+  border-radius: 15px;
+}
+section .cards .card .card-content p {
+  height: 21px;
+
+  line-height: 21px;
+  font-size: 18px;
+  color: #111;
+
+  margin-top: 20px;
+}
+section .cards .card .card-info p {
+  height: 16px;
+
+  color: #777777;
+  line-height: 16px;
+
+  font-size: 14px;
+  margin-top: 7px;
+}
+
+/* ======== FOOTER ======== */
+footer {
+  width: 100%;
+  height: 62px;
+  margin-top: 40px;
+
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+}
+footer p {
+  height: 16px;
+  flex: 1;
+
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+}
+
+
+/* ======== MODAL OVERLAY ======== */
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  transition: 300ms;
+}
+.modal-overlay {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+
+  position: fixed;
+  top: 0;
+
+  background-color: rgba(0,0,0,0.6);
+  transition: 300ms;
+}
+.modal-overlay .modal {
+  width: 660px;
+  height: 413px;
+
+  background-color: #fff;
+  border-radius: 16px;
+  margin: 20vh auto;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px 18px;
+  text-align: center;
+  position: relative;
+}
+.modal-overlay .modal .modal-image img {
+  border-radius: 15px;
+  width: 600px;
+  height: 200px;
+}
+.modal-overlay .modal .modal-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.modal-overlay .modal .modal-content h2 {
+  font-weight: normal;
+  width: 332px;
+  height: 28px;
+  color: #111;
+  font-size: 24px;
+  line-height: 28px;
+
+}
+.modal-overlay .modal .modal-content p {
+  font-size: 18px;
+  color: #777777;
+  line-height: 21px;
+  margin-top: 5px;
+}
+.modal-overlay .modal .close-modal {
+  margin-top: 8vh;
+}
+.modal-overlay .modal .close-modal a {
+  font-size: 16px;
+  color: #999;
+  line-height: 19px;
+  cursor: pointer;
+}
