@@ -12,9 +12,8 @@
 - A primeira parte do desafio consiste em **criar todo o Front-End** das páginas com **HTML, CSS e Javascript**. No exemplo mostro o layout que foi passado com posicionamento e espaçamento entre elementos.
 
 ### Exemplo
-<p align="center">
-<img src="readme/project-image.png" width="760" height="380">
-</p>
+
+<img src="readme/project-image.png" width="550">
 
 ## Tecnologias utilizadas Parte 1
 - HTML
@@ -31,5 +30,5 @@ da DOM com Javascript.
 ## Resultado Parte 1
 
 <p align="center">
-<img src="readme/foodfy.gif" width="760" height="380">
+<img src="readme/foodfy.gif" width="650">
 </p>
