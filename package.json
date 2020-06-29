@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "<h1 align=\"center\">\r     <img alt=\"Launchbase\" src=\"https://storage.googleapis.com/golden-wind/bootcamp-launchbase/logo.png\" width=\"300px\"/>\r </h1>\r <h2 align=\"center\">Desafio: Foodfy</h2>",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/viictorcamposs/foodfy.git"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
