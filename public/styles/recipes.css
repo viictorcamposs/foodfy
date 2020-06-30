@@ -1,7 +1,6 @@
 header nav .links .selectedRecipes {
   font-weight: bold;
 }
-
 /* ======== SECTION ======== */
 section {
   width: 940px;
@@ -42,7 +41,6 @@ section .cards .card .card-info p {
   font-size: 14px;
   margin-top: 7px;
 }
-
 /* ======== MODAL OVERLAY ======== */
 .modal-overlay.active {
   opacity: 1;
