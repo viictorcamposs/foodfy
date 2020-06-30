@@ -1,0 +1,27 @@
+header nav .links .selectedAbout {
+  font-weight: bold;
+}
+
+/* ======== MAIN ======== */
+main {
+  width: 940px;
+  margin: 20px auto;
+}
+main h2 {
+  margin-bottom: 20px;
+  color: #111;
+  line-height: 28px;
+  font-size: 24px;
+}
+main p {
+  margin-top: 20px;
+  line-height: 28px;
+  font-size: 18px;
+  color: #444;
+}
+main div.historia {
+  margin-top: 30px;
+}
+main div.receitas {
+  margin-top: 30px;
+}

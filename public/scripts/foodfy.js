@@ -8,7 +8,7 @@ for ( let card of cards ) {
     const imageId = card.getAttribute ('id')
     const pratoId = card.getAttribute ('name') 
     const chefId = card.getAttribute ('chef')
-    modalOverlay.querySelector ('img').src = `/assets/${imageId}`
+    modalOverlay.querySelector ('img').src = `/${imageId}`
     modalOverlay.querySelector ('h2').textContent = `${pratoId}`
     modalOverlay.querySelector ('p').textContent = `${chefId}`
   })
