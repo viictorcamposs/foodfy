@@ -1,5 +1,6 @@
 const nunjucks = require ('nunjucks')
 const express = require ('express')
+const data = require ('./data')
 const server = express () 
 
 server.use (express.static ('public/assets'))
