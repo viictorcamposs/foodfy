@@ -18,72 +18,19 @@
         <h1>Mais acessadas</h1>
       </div>
       <div class="cards">
-        <div class="card">
-          <div class="card-img">
-            <img src="/burger.png" alt="">
+        {% for card in data %}
+          <div class="card">
+            <div class="card-img">
+              <img src="{{ card.image }}" alt="Image do prato {{ card.title }}">
+            </div>
+            <div class="card-content">
+              <p>{{ card.title }}</p>
+            </div>
+            <div class="card-info">
+              <p>{{ card.author }}</p>
+            </div>
           </div>
-          <div class="card-content">
-            <p>Triplo bacon burger</p>
-          </div>
-          <div class="card-info">
-            <p>por Jorge Relato</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-img">
-            <img src="/pizza.png" alt="">
-          </div>
-          <div class="card-content">
-            <p>Pizza 4 estações</p>
-          </div>
-          <div class="card-info">
-            <p>por Fabiana Melo</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-img">
-            <img src="/espaguete.png" alt="">
-          </div>
-          <div class="card-content">
-            <p>Espaguete ao alho</p>
-          </div>
-          <div class="card-info">
-            <p>por Júlia Kinoto</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-img">
-            <img src="/lasanha.png" alt="">
-          </div>
-          <div class="card-content">
-            <p>Lasanha mac n' cheese</p>
-          </div>
-          <div class="card-info">
-            <p>por Juliano Vieira</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-img">
-            <img src="/doce.png" alt="">
-          </div>
-          <div class="card-content">
-            <p>Docinhos pão-do-céu</p>
-          </div>
-          <div class="card-info">
-            <p>por Ricardo Golvea</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-img">
-            <img src="/asinhas.png" alt="">
-          </div>
-          <div class="card-content">
-            <p>Asinhas de frango ao barbecue</p>
-          </div>
-          <div class="card-info">
-            <p>por Vania Steroski</p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </section>
   </main>
