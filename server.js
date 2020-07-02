@@ -50,6 +50,19 @@ server.get ('/recipes', function (req, res) {
   return res.render ('recipes', { data })
 })
 
+// CONFIGURANDO CAMINHO DETAIL.NJK
+server.get ('/recipes/detail/:id', function (req, res) {
+  const id = req.params.id
+  const recipe = data.find (function (recipe) {
+    return recipe.id == id
+  })
+
+  if ( !recipe ) {
+    return res.status (404).render ('not-found')
+  }
+  return res.render ('detail', { item: recipe })
+})
+
 
 server.listen (5500, () => {
   console.log ('Server is running')
