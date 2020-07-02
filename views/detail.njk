@@ -18,8 +18,7 @@
       <div class="ingredients">
         <div class="title">
           <h2>Ingredientes</h2>
-          <p>Esconder</p>
-          <p>Mostrar</p>
+          <p class='button'></p>
         </div>
         <div class="modal">
           {% for ingredient in item.ingredients %}
@@ -30,8 +29,7 @@
       <div class="preparation">
         <div class="title">
           <h2>Modo de preparo</h2>
-          <p>Esconder</p>
-          <p>Mostrar</p>
+          <p class='button'></p>
         </div>
         <div class="modal">
           {% for preparation in item.preparations %}
@@ -42,8 +40,7 @@
       <div class="information">
         <div class="title">
           <h2>Informações adicionais</h2>
-          <p>Esconder</p>
-          <p>Mostrar</p>
+          <p class='button'></p>
         </div>
         <div class="modal">
           {% for information in item.information %}
@@ -54,3 +51,6 @@
     </section>
   </main>
 {% endblock%}
+{% block script%}
+  <script src="/foodfy.js"></script>
+{% endblock %}
