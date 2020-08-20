@@ -1,0 +1,51 @@
+{% extends '../layout.njk' %}
+{% block head %}
+    <link rel="stylesheet" href="/admin/fields.css">
+    <link rel="stylesheet" href="/admin/edit.css">
+{% endblock%}
+
+{% block content %}
+    <div class="main-content">
+        <form action="/admin/chefs?_method=DELETE" id="delete-chef" method="POST">
+            <input type="hidden" name="id" value="{{ chef.id }}">
+        </form>
+        <form action="/admin/chefs?_method=PUT" id="update-chef" method="POST">
+            <div class="header">
+                <h1>Editando chef</h1>
+                <div class="buttons">
+                    <input type="hidden" name="id" value="{{ chef.id }}">
+                    <button type="button" class="addModal">Deletar</button>
+                    <button type="submit" form="update-chef">Salvar Chef</button>
+                </div>
+            </div>
+            <fieldset>
+                {% include './fields.njk' %}
+            </fieldset>
+        </form>
+        {% if chef.total_recipes == 0 %}
+            <div id="modal" class="hide">
+                <div class="modal-content">
+                    <img src="/recipes/chef.png" alt="Imagem Foodfy Chef">
+                    <div class="modal-buttons">
+                        <p>Deseja realmente deletar?</p>
+                        <div>
+                            <button type="submit" form="delete-chef">Confirmar</button>
+                            <button class="removeModal" type="button">Voltar</button>
+                        </div>
+                    </div>
+                </div>
+        {% else %}
+            </div><div id="modal" class="hide">
+                <div class="modal-content">
+                    <img src="/recipes/chef.png" alt="Imagem Foodfy Chef">
+                    <div class="modal-button">
+                        <p>Ops! <br> Não é possível deletar Chefs que possuem receitas.</p>
+                        <div>
+                            <button class="removeModal" type="button">Voltar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock%}

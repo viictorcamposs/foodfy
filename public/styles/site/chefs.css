@@ -1,0 +1,55 @@
+section { 
+    width: 940px;
+    margin: 0 auto;
+    height: 75vh;
+}
+.chef-cards {
+    width: 940px;
+    margin: 30px auto 0;
+    display: grid;
+    grid-template-columns: repeat( 4, 1fr );
+    row-gap: 30px;
+}
+.chef-card {
+    display: flex;
+    padding: 5px;
+    transition: 300ms;
+    width: 235px;
+}
+.chef-avatar img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid white;
+    box-shadow: 3px 0px 6px -2px rgba(1, 1, 1, 0.8);
+    margin-right: 20px;
+}
+.chef-content {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+.chef-content p {
+    font-size: 18px;
+    line-height: 24px;
+    color: #111;
+}
+.chef-content p:last-child {
+    font-size: 14px;
+    color: #666;
+    line-height: 24px;
+}
+.chef-content a {
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #6558C3;
+    border-radius: 8px;
+    transition: 300ms;
+    width: 0;
+}
+.chef-content a:hover {
+    color: #58c3b5;
+}

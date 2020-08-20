@@ -1,0 +1,111 @@
+button[form="delete-recipe"],
+button[form="delete-chef"],
+button.addModal {
+    background-color: #dc4747;
+    padding: 9px 22px;
+    margin-right: 5px;
+}
+button[form="delete-recipe"]:hover,
+button[form="delete-chef"]:hover,
+button.addModal:hover {
+    background-color: #be2c2c;
+}
+
+/* MODAL DA PÁGINA DE EDIÇÃO */
+
+#modal {
+    /* background-color: rgba(0,0,0,0.4); */
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 400ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: visible;
+    opacity: 1;
+    transition: 300ms;
+}
+.modal-content {
+    width: 500px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    background-color: white;
+    padding: 18px 36px;
+    box-sizing: content-box;
+    gap: 30px;
+    border: 2px solid black;
+}
+.modal-content img {
+    height: 200px;
+    width: 140px;
+}
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.modal-buttons p {
+    font-size: 24px;
+    font-weight: bold;
+}
+.modal-buttons div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    margin-top: 15px;
+}
+.modal-buttons div button {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 100ms;
+    border-radius: 4px;
+    outline: none;
+}
+.modal-buttons div button[type="submit"] {
+    margin: 0;
+}
+.modal-buttons div button[type="button"] {
+    background-color: #acacac;
+} 
+.modal-buttons div button[type="button"]:hover {
+    background: #7e7e7e;
+}
+#modal.hide {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.modal-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.modal-button div button {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 100ms;
+    border-radius: 4px;
+    outline: none;
+    background-color: #acacac;
+    padding: 9px 22px;
+    margin-top: 30px;
+}
+.modal-button div button[type="button"]:hover {
+    background: #7e7e7e;
+}
+.modal-button p {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+}

@@ -1,20 +1,21 @@
 {
   "name": "foodfy",
   "version": "1.0.0",
-  "description": "<h1 align=\"center\">\r     <img alt=\"Launchbase\" src=\"https://storage.googleapis.com/golden-wind/bootcamp-launchbase/logo.png\" width=\"300px\"/>\r </h1>\r <h2 align=\"center\">Desafio: Foodfy</h2>",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/viictorcamposs/foodfy.git"
+    "start": "npm-run-all -p nodemon browsersync",
+    "nodemon": "nodemon src/server.js",
+    "browsersync": "browser-sync start --proxy http://localhost:5000 --files 'public, src/app/views'"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "nunjucks": "^3.2.1"
+    "method-override": "^3.0.0",
+    "nunjucks": "^3.2.1",
+    "pg": "^8.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "browser-sync": "^2.26.7",
+    "nodemon": "^2.0.4",
+    "npm-run-all": "^4.1.5"
   }
 }
