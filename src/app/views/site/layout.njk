@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         {% block head %}{% endblock %}
-        <link rel="shortcut icon" href="/chef-favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/assets/chef-favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/site/main.css">
+        <link rel="stylesheet" href="/styles/site/main.css">
         
         <title>Foodfy</title>
     </head>
@@ -16,7 +16,7 @@
         <div class="main">
             <header>
                 <nav>
-                    <a href="/home"><img src="/recipes/logo.png" alt="Logomarca Foodfy"></a>
+                    <a href="/"><img src="/assets/logo.png" alt="Logomarca Foodfy"></a>
                     <div class="links">
                         <a href="/about">Sobre</a>
                         <a href="/recipes">Receitas</a>
@@ -26,11 +26,11 @@
             </header>
             {% block content %}{% endblock %}
 
+
         </div>
-        <script src="/site.js"></script>
+        
+        {% include './footer.njk' %}
+        <script src="/scripts/site.js"></script>
         {% block script %}{% endblock %}
-        <footer>
-            <p>Todos os direitos reservados, receitas <a href="/home">Foodfy</a></p>
-        </footer>
     </body>
 </html>

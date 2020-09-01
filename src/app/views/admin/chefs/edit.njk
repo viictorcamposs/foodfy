@@ -1,7 +1,7 @@
 {% extends '../layout.njk' %}
 {% block head %}
-    <link rel="stylesheet" href="/admin/fields.css">
-    <link rel="stylesheet" href="/admin/edit.css">
+    <link rel="stylesheet" href="/styles/admin/fields.css">
+    <link rel="stylesheet" href="/styles/admin/edit.css">
 {% endblock%}
 
 {% block content %}
@@ -25,24 +25,27 @@
         {% if chef.total_recipes == 0 %}
             <div id="modal" class="hide">
                 <div class="modal-content">
-                    <img src="/recipes/chef.png" alt="Imagem Foodfy Chef">
+                    <img src="/assets/chef.png" alt="Imagem Foodfy Chef">
                     <div class="modal-buttons">
                         <p>Deseja realmente deletar?</p>
                         <div>
                             <button type="submit" form="delete-chef">Confirmar</button>
                             <button class="removeModal" type="button">Voltar</button>
                         </div>
+                       {% include '../confirm.njk' %}
                     </div>
                 </div>
+            </div>
         {% else %}
-            </div><div id="modal" class="hide">
+            <div id="modal" class="hide">
                 <div class="modal-content">
-                    <img src="/recipes/chef.png" alt="Imagem Foodfy Chef">
+                    <img src="/assets/chef.png" alt="Imagem Foodfy Chef">
                     <div class="modal-button">
                         <p>Ops! <br> Não é possível deletar Chefs que possuem receitas.</p>
                         <div>
                             <button class="removeModal" type="button">Voltar</button>
                         </div>
+                        {% include '../confirm.njk' %}
                     </div>
                 </div>
             </div>

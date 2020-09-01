@@ -1,0 +1,13 @@
+<script>
+    // CÓDIGO PARA ADICIONAR MODAL DE CONFIRMAÇÃO NA HORA DE DELETAR RECEITAS
+    const modal = document.getElementById('modal')
+    const addModal = document.querySelector('.buttons .addModal')
+    const removeModal = document.querySelector('#modal .removeModal')
+
+    addModal.addEventListener( 'click', () => {
+        modal.classList.remove ( 'hide' )
+    })
+    removeModal.addEventListener( 'click', () => {
+        modal.classList.add ( 'hide' )
+    })
+</script>

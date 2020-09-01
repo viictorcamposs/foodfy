@@ -5,20 +5,18 @@ const server = express ()
 const methodOverride = require ('method-override')
 
 server
-.use ( express.urlencoded ( {extended: true } ))
-.use ( express.static ( 'public/styles' ))
-.use ( express.static ( 'public/scripts' ))
-.use ( express.static ( 'public/assets' ))
-.use ( methodOverride ( '_method' ))
+.use ( express.urlencoded ({ extended: true }))
+.use ( express.static ('public'))
+.use ( methodOverride ('_method'))
 .use ( routes )
 .set ( 'view engine', 'njk' )
 
-nunjucks.configure ( 'src/app/views', {
+nunjucks.configure ('src/app/views', {
     express: server,
     autoescape: false,
     noCache: true
 })
 
 server.listen ( 5000, () => {
-    console.log ( 'Server is running' )
+    console.log ('Server is running')
 })

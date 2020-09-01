@@ -51,6 +51,40 @@ fieldset .input-block label,
     margin-top: 8px;
     margin-bottom: 8px;
 }
+.input-block #photos-upload {
+    position: relative;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.input-block #photos-upload #photos-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.input-block #photos-upload i {
+    position: absolute;
+
+    color: #777;
+    font-size: 50px;
+    font-weight: normal;
+    cursor: pointer;
+    z-index: -10;
+}
 .input-block input,
 .input-block select {
     width: 100%;

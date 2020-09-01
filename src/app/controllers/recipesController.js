@@ -1,55 +1,93 @@
-const recipes = require ( '../models/Recipe' )
+const Recipes = require ( '../models/Recipe' )
 
 module.exports = {
-    index ( req, res ) {
-        recipes.all ( ( recipes ) => {
+    async index ( req, res ) {
+        try {
+            let results = await Recipes.all()
+            const recipes = results.rows
+    
             return res.render ( 'admin/recipes/index', { recipes } )
-        })
-    },
-    create ( req, res ) {
-        recipes.chefSelectOptions ( ( options ) => {
-            return res.render ( 'admin/recipes/create', { chefOptions: options } )
-        })
-    },
-    post ( req, res ) {
-        const keys = Object.keys ( req.body )
-        for ( key of keys ) {
-            if ( req.body[key] == "" ) {
-                return 
-            }
+        } catch (error) {
+            console.log ( error )
         }
-        recipes.create ( req.body, ( recipe ) => {
-            return res.redirect ( `/admin/recipes/${ recipe.id }`)
-        })
     },
-    show ( req, res ) {
-        recipes.find ( req.params.id, ( recipe ) => {
-            if ( !recipe ) return res.send ( 'Recipe not found!' )
+    async create ( req, res ) {
+        try {
+            let results = await Recipes.chefSelectOptions()
+            const chefOptions = results.rows
+    
+            return res.render ( 'admin/recipes/create', { chefOptions } )
+        } catch (error) {
+            console.log ( error )
+        }
+    },
+    async post ( req, res ) {
+        try {
+            const keys = Object.keys ( req.body )
+            for ( key of keys ) {
+                if ( req.body[key] == "" ) {
+                    return 
+                }
+            }
+
+            let results = await Recipes.create( req.body )
+            const recipeId = results.rows[0] 
+            
+            return res.redirect ( `/admin/recipes/${ recipeId }`)
+        } catch (error) {
+            console.log ( error )            
+        }
+    },
+    async show ( req, res ) {
+        try {
+            let results = await Recipes.find( req.params.id )
+            const recipe = results.rows[0]
+
+            if( !recipe ) return res.send ('Recipe Not Found!')
+
             return res.render ( 'admin/recipes/show', { recipe }) 
-        })
-    },
-    edit ( req, res ) {
-        recipes.find ( req.params.id, ( recipe ) => {
-            if ( !recipe ) return res.send ( 'Recipe not found!' )
-            recipes.chefSelectOptions ( ( options ) => {
-                return res.render ( 'admin/recipes/edit', { recipe, chefOptions: options }) 
-            })
-        })
-    },
-    put ( req, res ) {
-        const keys = Object.keys ( req.body )
-        for ( key of keys ) {
-            if ( req.body[key] == "" ) {
-                return
-            }
+        } catch (error) {
+            console.log ( error )            
         }
-        recipes.update ( req.body, () => {
-            return res.redirect ( `/admin/recipes/${ req.body.id }` )
-        })
     },
-    delete ( req, res ) {
-        recipes.delete ( req.body.id, () => {
+    async edit ( req, res ) {
+        try {
+            let results = await Recipes.find ( req.params.id )
+            const recipe = results.rows[0]
+    
+            if ( !recipe ) return res.send ('Recipe Not Found!')
+    
+            results = await Recipes.chefSelectOptions()
+            const chefOptions = results.rows
+             
+            return res.render ( 'admin/recipes/edit', { recipe, chefOptions }) 
+        } catch (error) {
+            console.log ( error )
+        }
+    },
+    async put ( req, res ) {
+        try {
+            const keys = Object.keys ( req.body )
+            for ( key of keys ) {
+                if ( req.body[key] == "" ) {
+                    return
+                }
+            }
+
+            await Recipes.update( req.body )
+            
+            return res.redirect ( `/admin/recipes/${ req.body.id }` )
+        } catch (error) {
+            console.log ( error )
+        }
+    },
+    async delete ( req, res ) {
+        try {
+            await Recipes.delete( req.body.id )
+            
             return res.redirect ( '/admin/recipes' )
-        })
+        } catch ( error ) {
+            console.log ( error )            
+        }
     }
 } 

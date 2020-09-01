@@ -1,42 +1,43 @@
-const site = require ( '../models/Site' )
+const Site = require ( '../models/Site' )
 
 module.exports = {
-    index ( req, res ) {
-        site.home ( ( recipes ) => {
-            let { filter } = req.query 
-
+    async index ( req, res ) { 
+        try {
+            let results = await Site.home()
+            const recipes = results.rows
+            let { filter } = req.query
             if ( filter ) {
-                const params = {
-                    filter,
-                    callback ( filteredRecipes ) {
-                        return res.render ( 'site/index', { recipes, filter, filteredRecipes } )
-                    }
-                }
-                site.findby ( params )
+                results = await Site.findby( filter )
+                const filteredRecipes = results.rows
+                return res.render ('site/index', { recipes, filter, filteredRecipes })
             } else {
-                return res.render ( 'site/index', { recipes } )
+                return res.render ('site/index', { recipes })
             }
+        } catch ( err ) {
+            console.log (err)
+        }
+    },
+    async about ( req, res ) { 
+        const result = await Site.about()
 
-        })
+        return res.render ('site/about', { result })
     },
-    about ( req, res ) { 
-        site.about ( ( data ) => {
-            return res.render ( 'site/about', { items: data })        
-        })
+    async recipes ( req, res ) {
+        let results = await Site.all()
+        const recipes = results.rows
+
+        return res.render ( 'site/recipes', { recipes })
     },
-    recipes ( req, res ) {
-        site.all ( ( recipes ) => {
-            return res.render ( 'site/recipes', { recipes })
-        })
+    async detail ( req, res ) {
+       let results = await Site.show( req.params.id )
+       const recipe = results.rows[0] 
+
+        return res.render ( 'site/detail', { recipe })
     },
-    detail ( req, res ) {
-        site.show ( req.params.id, ( recipe ) => {
-            return res.render ( 'site/detail', { recipe })
-        })
-    },
-    chefs ( req, res ) {
-        site.allChefs ( ( chefs ) => {
-            res.render ( 'site/chefs', { chefs })
-        })
+    async chefs ( req, res ) {
+        let results = await Site.allChefs()
+        const chefs = results.rows
+
+        res.render ( 'site/chefs', { chefs })
     }
 }

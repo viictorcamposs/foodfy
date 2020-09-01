@@ -1,4 +1,35 @@
 <div class="input-block">
+    <label>Imagem da receita</label>
+    <div>
+        <div id="photos-upload">
+            <input
+                id="photos-input" 
+                type="file" 
+                name="photos" 
+                multiple
+                accept="image/*"
+                onchange="photosUpload.handleFileInput(event)"
+            >
+            <i class="material-icons">add</i>
+        </div>
+        <div id="photos-preview">
+            {% if files %}
+                {% for image in files %}
+                    <div class="photo" id="{{ image.id }}">
+                        <img src="{{ image.src }}" alt="Image da receita: {{ recipe.title }}">
+                        <i class="material-icons"
+                            onclick="photosUpload.removeOldImage(event)">
+                            delete
+                        </i>
+                    </div>
+                {% endfor %}
+                <input type="hidden" name="removed_files">
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="input-block">
     <label for="title">Título da receita</label>
     <input type="text" name="title" value="{{ recipe.title }}" required>
 </div>
@@ -15,11 +46,6 @@
             </option>
         {% endfor %}
     </select>
-</div>
-
-<div class="input-block">
-    <label for="">Imagem da receita</label>
-    <input type="url" placeholder="https://" name="image" value="{{ recipe.image }}">
 </div>
 
 <div class="input-block">

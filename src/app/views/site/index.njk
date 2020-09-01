@@ -1,13 +1,13 @@
 {% extends './layout.njk' %}
 
 {% block head %}
-    <link rel="stylesheet" href="/site/index.css">
+    <link rel="stylesheet" href="/styles/site/index.css">
 {% endblock %}
 
 {% block content %}
     <main>
         <div class="search-block">
-            <form action="/home" method="get">
+            <form action="/" method="get">
                 <input type="text" name="filter" class="filter" placeholder="Buscar uma receita" value="{{ filter }}">
                 <button type="submit">Buscar</button>
             </form>
@@ -39,7 +39,7 @@
                     <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
                 </div>
                 <div class="image-content">
-                    <img src="/recipes/chef.png" alt="Site de receitas Foodfy">
+                    <img src="/assets/chef.png" alt="Site de receitas Foodfy">
                 </div>
             </div>
             <section>

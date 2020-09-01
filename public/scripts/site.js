@@ -23,7 +23,7 @@ for ( let i = 0; i < detail.length; i++ ) {
     const content = detail[i].querySelector ( '.content' )
 
     span.addEventListener ( 'click', () => {
-        if ( span.innerHTML === 'Mostrar' ) {
+        if ( span.innerHTML === 'Mostrar' ) { 
             content.classList.add ( 'showContent' )
             span.innerText = 'Esconder'
         } else {

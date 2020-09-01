@@ -7,13 +7,13 @@
 }
 html, 
 body {
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-.main {
-    height: 100vh;
-    position: relative;
-}
-.main header {
+
+/* layout header */
+header {
     width: 100%;
     background-color: #111;
     height: 80px;
@@ -45,12 +45,16 @@ header nav {
 .links a.active {
     color: #fff;
 }
+
+
+
+/* layout footer */
 footer {
     background-color: #eee;
     height: 62px;
     width: 100%;
     display: flex;
-    margin-top: 3%;
+    margin-top: auto;
     align-items: center;
     justify-content: center;
 }

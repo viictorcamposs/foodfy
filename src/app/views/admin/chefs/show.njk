@@ -1,6 +1,6 @@
 {% extends '../layout.njk' %}
 {% block head %}
-    <link rel="stylesheet" href="/admin/show.css">
+    <link rel="stylesheet" href="/styles/admin/show.css">
 {% endblock %}
 
 {% block content %}
@@ -30,7 +30,7 @@
                             {% for recipe in recipes %}
                                 <div class="card">
                                     <div class="card-image">
-                                        <img src="{{ recipe.image }}" alt="Imagem da receita {{ recipe.title }}">
+                                        <img src="" alt="Imagem da receita {{ recipe.title }}">
                                     </div>
                                     <div class="card-content">
                                         <div class="card-title">

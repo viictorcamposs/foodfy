@@ -6,33 +6,29 @@
         
         <title>Foodfy - Área Administrativa</title>
         
-        <link rel="shortcut icon" href="/chef-favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="/admin/main.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="shortcut icon" href="/assets/chef-favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/styles/admin/main.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         {% block head %}{% endblock %}
     </head>
     <body>
-        <div class="main">
-            <header>
-                <nav>
-                    <a href="/admin/recipes"><img src="/admin/logo.png" alt="Logomarca Foodfy"></a>
-                    <div class="links">
-                        <a href="/admin/recipes">Receitas</a>
-                        <a href="/admin/chefs">Chefs</a>
-                    </div>
-                </nav>
-            </header>
-            <div class="content">
-                {% block content %}{% endblock %}
-                {# <div class="footer">
-                    <footer>
-                        <p>Todos os direitos reservados, receitas <a href="#">Foodfy</a></p>
-                    </footer>
-                </div> #}
-            </div>
-        </div>
-        <script src="/admin.js"></script>
-        {% block script %}{% endblock %}
+        {% include './parts/header.njk' %}
 
+        {% block content %}{% endblock %}
+        
+        {% include './parts/footer.njk' %}
+        
+        <script>
+            // CÓDIGO PARA MANTER LINK DO MENU MARCADO DE ACORDO COM A PÁGINA
+            const currentPage = location.pathname
+            const menuLinks = document.querySelectorAll( 'header nav .links a')
+
+            for ( link of menuLinks ) {
+                if ( currentPage.includes ( link.getAttribute ('href') )) {
+                    link.classList.add ( 'active' )
+                }
+            }
+        </script>
     </body>
 </html>

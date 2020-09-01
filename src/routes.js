@@ -1,5 +1,7 @@
 const express = require ('express')
 const routes = express.Router ()
+
+const multer = require ('./app/middlewares/multer')
 const recipes = require ('./app/controllers/recipesController')
 const chefs = require ('./app/controllers/chefsController')
 const site = require ('./app/controllers/siteController')
@@ -13,6 +15,7 @@ routes
 .put ( '/admin/recipes', recipes.put ) 
 .post ( '/admin/recipes', recipes.post )
 .delete ( '/admin/recipes', recipes.delete )
+
 // ROTAS DA ÁREA ADMINISTRATIVA CHEF
 .get ( '/admin/chefs', chefs.index )
 .get ( '/admin/chefs/create', chefs.create )
@@ -24,7 +27,7 @@ routes
 
 
 // ROTAS DO SITE FOODFY
-.get ( '/home', site.index )
+.get ( '/', site.index )
 .get ( '/about', site.about )
 .get ( '/recipes', site.recipes )
 .get ( '/recipes/:id', site.detail )
