@@ -3,8 +3,8 @@ a {
     font-weight: bold;
 }
 .main-content {
-    max-width: 1200px;
-    margin: 0 230px;
+    width: 940px;
+    margin: 0 auto;
 }
 .main-content .header {
     height: 80px;
@@ -51,6 +51,11 @@ fieldset .input-block label,
     margin-top: 8px;
     margin-bottom: 8px;
 }
+
+/* photos item style */
+.input-block .photos-field {
+    display: flex;
+}
 .input-block #photos-upload {
     position: relative;
     
@@ -85,6 +90,48 @@ fieldset .input-block label,
     cursor: pointer;
     z-index: -10;
 }
+.input-block #photos-preview {
+    display: flex;
+}
+.input-block #photos-preview .photo {
+    position: relative;
+    margin-left: 7px;
+}
+.input-block #photos-preview .photo img {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0px 0px 8px -2px rgba(0,0,0,.7);
+    transition: 200ms;
+}
+.input-block #photos-preview .photo i {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    
+    background-color: rgba(255,255,255, .5);    
+    color: #ec2626;
+    font-size: 50px;
+
+    transition: 200ms;
+    opacity: 0;
+    cursor: pointer;
+}
+.input-block #photos-preview .photo i:hover {
+    opacity: 1;
+}
+
+
 .input-block input,
 .input-block select {
     width: 100%;

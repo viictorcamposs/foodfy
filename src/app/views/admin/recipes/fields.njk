@@ -1,6 +1,6 @@
 <div class="input-block">
     <label>Imagem da receita</label>
-    <div>
+    <div class="photos-field">
         <div id="photos-upload">
             <input
                 id="photos-input" 
@@ -8,7 +8,7 @@
                 name="photos" 
                 multiple
                 accept="image/*"
-                onchange="photosUpload.handleFileInput(event)"
+                onchange="PhotosUpload.handleFileInput(event)"
             >
             <i class="material-icons">add</i>
         </div>
@@ -17,10 +17,7 @@
                 {% for image in files %}
                     <div class="photo" id="{{ image.id }}">
                         <img src="{{ image.src }}" alt="Image da receita: {{ recipe.title }}">
-                        <i class="material-icons"
-                            onclick="photosUpload.removeOldImage(event)">
-                            delete
-                        </i>
+                        <i class="material-icons" onclick="PhotosUpload.removeOldImage(event)">delete</i>
                     </div>
                 {% endfor %}
                 <input type="hidden" name="removed_files">
