@@ -19,7 +19,7 @@ module.exports = {
                 information,
                 chef_id,
                 created_at 
-            ) VALUES ($1, $2, $3, $4, $5, $6, $7)  
+            ) VALUES ($1, $2, $3, $4, $5, $6)  
             RETURNING id
         `
         const values = [

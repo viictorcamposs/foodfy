@@ -6,20 +6,39 @@
 {% block content %}
     <div id="main-content">
         <div class="header">
-            <h1>Receita: {{ recipe.title }}</h1>
+            <h1>Receita: {{recipe.title}}</h1>
             <a href="/admin/recipes/{{ recipe.id }}/edit">Editar receita</a>
         </div>
         <section>
+
             <div class="avatar recipeTitle">
-                <img src="{{ recipe.image }}" alt="">
-                <h1>{{ recipe.title }}</h1>
-                <p>por {{ recipe.chef_name }} </p>
+                <div class="gallery">
+                    <div class="highlight">
+                        {% if not files[0] %}
+                            <img src="http://placehold.it/300x940?text=RECEITA SEM FOTO" alt="">
+                        {% else %}
+                            <img src="{{files[0].src}}" alt="Imagem de {{recipe.title}}">
+                        {% endif %}
+                    </div>
+                    <div class="gallery-preview">
+                        {% for image in files %}
+                            <img src="{{image.src}}" alt="Imagem de {{image.name}}"
+                                {% if loop.index0 == 0 %}
+                                    class="active"
+                                {% endif %}
+                                onclick="ImageGallery.setImage(event)"
+                            >
+                        {% endfor %}
+                    </div>
+                </div>
+                <h1>{{recipe.title}}</h1>
+                <p>por {{recipe.chef_name}} </p>
             </div>
             <div class="detail">
                 <h1>Ingredientes</h1>
                 <div class="content">
                     {% for ingredient in recipe.ingredients %}
-                        <p> - {{ ingredient }}</p>
+                        <p> - {{ingredient}}</p>
                     {% endfor %}
                 </div>
             </div>
@@ -27,16 +46,17 @@
                 <h1>Modo de preparo</h1>
                 <div class="content">
                     {% for preparation in recipe.preparations %}
-                        <p> - {{ preparation }}</p>
+                        <p> - {{preparation}}</p>
                     {% endfor %}
                 </div>
             </div>
             <div class="detail">
                 <h1>Informações adicionais</h1>
                 <div class="content">
-                    <p>{{ recipe.information }}</p>
+                    <p>{{recipe.information}}</p>
                 </div>
             </div>
         </section>
     </div>
+
 {% endblock %}
