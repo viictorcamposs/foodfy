@@ -9,7 +9,7 @@
         <form action="/admin/chefs?_method=DELETE" id="delete-chef" method="POST">
             <input type="hidden" name="id" value="{{ chef.id }}">
         </form>
-        <form action="/admin/chefs?_method=PUT" id="update-chef" method="POST">
+        <form action="/admin/chefs?_method=PUT" id="update-chef" method="POST" enctype="multipart/form-data">
             <div class="header">
                 <h1>Editando chef</h1>
                 <div class="buttons">

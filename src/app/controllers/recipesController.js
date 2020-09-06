@@ -6,8 +6,20 @@ module.exports = {
         try {
             let results = await Recipes.all()
             const recipes = results.rows
+
+            let RecipesArray = []
+            for(let recipe of recipes) {
+                results = await File.findRecipeFiles(recipe.id)
+                const result = results.rows[0]
+
+                const Recipe = {
+                    ...result,
+                    src: `${req.protocol}://${req.headers.host}${result.path.replace('public', '')}`
+                }
+                RecipesArray.push(Recipe)
+            }
     
-            return res.render('admin/recipes/index', {recipes})
+            return res.render('admin/recipes/index', {recipes: RecipesArray})
         } catch (error) {
             console.log(`Database Error => ${error}`)  
         }
@@ -49,7 +61,7 @@ module.exports = {
 
             if(!recipe) return res.send('Recipe Not Found!')
 
-            results = await File.showRecipeFiles(recipe.id)
+            results = await File.findRecipeFiles(recipe.id)
             let files = results.rows.map(file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
@@ -70,7 +82,7 @@ module.exports = {
             results = await Recipes.chefSelectOptions()
             const chefOptions = results.rows
 
-            results = await File.showRecipeFiles(recipe.id)
+            results = await File.findRecipeFiles(recipe.id)
             let files = results.rows.map(file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`

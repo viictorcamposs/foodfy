@@ -1,26 +1,26 @@
 const { date } = require ( '../../lib/utils' )
 const db = require ( '../../config/db' )
 
-module.exports = {
+module.exports = { 
     all () {
         return db.query (`
             SELECT chefs.*  
             FROM chefs
         `)
     },
-    create ( data ) {
+    create ( data, file_id ) {
         const query = `
             INSERT INTO chefs (
                 name,
-                avatar_url,
-                created_at 
+                created_at, 
+                file_id
             ) VALUES ($1, $2, $3)  
             RETURNING id
         `
         const values = [
             data.name,
-            data.avatar_url,
-            date ( Date.now () ).iso
+            date ( Date.now () ).iso,
+            file_id
         ]
 
         return db.query ( query, values )
@@ -37,21 +37,24 @@ module.exports = {
     },
     findRecipe ( id ) {
         return db.query (`
-            SELECT * FROM chefs
-            LEFT JOIN recipes ON ( recipes.chef_id = chefs.id )
+            SELECT chefs.name, recipes.title, recipes.id, recipe_files.file_id, files.path 
+            FROM chefs
+            INNER JOIN recipes ON recipes.chef_id = chefs.id
+            INNER JOIN recipe_files ON recipe_files.recipe_id = recipes.id
+            INNER JOIN files ON recipe_files.file_id = files.id
             WHERE chefs.id = $1`
         , [id])
     },
-    update ( data ) {
+    update ( data, file_id ) {
         const query = `
             UPDATE chefs SET 
                 name = ($1),
-                avatar_url = ($2) 
+                file_id = ($2) 
             WHERE id = $3
         `
         const values = [
             data.name,
-            data.avatar_url,
+            file_id,
             data.id
         ]
         return db.query ( query, values )

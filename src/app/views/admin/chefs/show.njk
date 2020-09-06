@@ -11,11 +11,11 @@
         </div>
         <section>
             <div class="avatar chefTitle">
-                <img src="{{ chef.avatar_url }}" alt="">
+                <img src="{{ file[0].src }}" alt="Imagem de {{chef.name}}">
                 <h1>{{ chef.name }}</h1>
                 <p> 
                     {% if chef.total_recipes > 1 %}
-                   {{ chef.total_recipes }} receitas
+                        {{ chef.total_recipes }} receitas
                     {% elif chef.total_recipes == 0 %}
                         Nenhuma receita cadastrada.
                     {% else %}
@@ -30,7 +30,7 @@
                             {% for recipe in recipes %}
                                 <div class="card">
                                     <div class="card-image">
-                                        <img src="" alt="Imagem da receita {{ recipe.title }}">
+                                        <img src="{{recipe.src}}" alt="Imagem da receita {{ recipe.title }}">
                                     </div>
                                     <div class="card-content">
                                         <div class="card-title">

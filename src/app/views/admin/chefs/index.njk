@@ -14,9 +14,9 @@
             <section>
                 <div class="chef-cards">
                     {% for chef in chefs %}
-                        <div class="chef-card">
+                        <div class="chef-card"> 
                             <div class="chef-avatar">
-                                <img src="{{ chef.avatar_url }}" alt="Chef {{ chef.name }}">
+                                <img src="{{ chef.src }}" alt="Chef {{ chef.name }}">
                             </div>
                             <div class="chef-content">
                                 <p>{{ chef.name }}</p>

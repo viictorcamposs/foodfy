@@ -2,6 +2,24 @@ const db = require('../../config/db')
 const fs = require('fs')
 
 module.exports = {
+    createChefFile ({filename, path}) {
+        try {
+            const query = `
+                INSERT INTO files (
+                    name,
+                    path
+                ) VALUES ($1, $2)
+                RETURNING id
+            `
+            const values = [
+                filename,
+                path
+            ]
+            return db.query(query, values)
+        } catch (error) {
+            
+        }
+    },
     async createRecipeFiles ({filename, path, recipe_id}) {
         try {
             let query = `
@@ -34,13 +52,14 @@ module.exports = {
             console.log(`Database Error => ${error}`)
         }
     },
-    showRecipeFiles(recipe_id) {
+    findRecipeFiles(recipe_id) {
         try {
             const query = `
-                SELECT files.*
+                SELECT recipes.*, files.path, chefs.name AS chef_name
                 FROM recipes
                 INNER JOIN recipe_files ON recipes.id = recipe_files.recipe_id
                 INNER JOIN files ON files.id = recipe_files.file_id
+                INNER JOIN chefs ON recipes.chef_id = chefs.id
                 WHERE recipe_files.recipe_id = $1
             `
             const values = [
@@ -50,6 +69,18 @@ module.exports = {
         } catch (error) {
             console.log(`Database Error => ${error}`)
         }
+    },
+    findChefFile(chef_id) {
+        const query = `
+            SELECT chefs.*, files.path
+            FROM files
+            LEFT JOIN chefs ON chefs.file_id = files.id
+            WHERE chefs.id = $1
+        `
+        const values = [
+            chef_id
+        ]
+        return db.query(query, values)
     },
     async deleteRecipeFiles(id) {
         try {

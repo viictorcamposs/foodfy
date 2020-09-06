@@ -21,8 +21,8 @@ routes
 .get('/admin/chefs/create', chefs.create)
 .get('/admin/chefs/:id', chefs.show)
 .get('/admin/chefs/:id/edit', chefs.edit)
-.put('/admin/chefs', chefs.put) 
-.post('/admin/chefs', chefs.post)
+.put('/admin/chefs', multer.single('photo'),chefs.put) 
+.post('/admin/chefs', multer.single('photo'),chefs.post)
 .delete('/admin/chefs', chefs.delete)
 
 

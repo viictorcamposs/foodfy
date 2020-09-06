@@ -5,5 +5,8 @@
 
 <div class="input-block">
     <label for="">Avatar</label>
-    <input type="url" placeholder="https://" name="avatar_url" value="{{ chef.avatar_url }}">
+    <div class="photo-upload">
+        <input id="photo-input" type="file" name="photo" accept="image/*">
+        <p>Enviar Avatar</p>
+    </div>
 </div>

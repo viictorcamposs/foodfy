@@ -13,5 +13,6 @@ module.exports = {
             birthDay: `${day}/${month}`,
             format: `${day}/${month}/${year}` 
         }
-    }    
+    },
+    getImages(req, file) {}
 }
