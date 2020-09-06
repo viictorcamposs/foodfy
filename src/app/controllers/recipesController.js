@@ -7,19 +7,7 @@ module.exports = {
             let results = await Recipes.all()
             const recipes = results.rows
 
-            let RecipesArray = []
-            for(let recipe of recipes) {
-                results = await File.findRecipeFiles(recipe.id)
-                const result = results.rows[0]
-
-                const Recipe = {
-                    ...result,
-                    src: `${req.protocol}://${req.headers.host}${result.path.replace('public', '')}`
-                }
-                RecipesArray.push(Recipe)
-            }
-    
-            return res.render('admin/recipes/index', {recipes: RecipesArray})
+            return res.render('admin/recipes/index', {recipes})
         } catch (error) {
             console.log(`Database Error => ${error}`)  
         }
@@ -100,12 +88,6 @@ module.exports = {
                 if(req.body[key] == "" && key != "removed_files") return res.send("Por favor, preencha todos os campos!")
             }
 
-            if(req.files.length != 0) {
-                const newFilesPromise = req.files.map(file => File.createRecipeFiles({...file, recipe_id: req.body.id}))
-
-                await Promise.all(newFilesPromise)
-            }
-            
             if(req.body.removed_files) {
                 const removedFiles = req.body.removed_files.split(',')
                 const lastIndex = removedFiles.length - 1
@@ -115,6 +97,18 @@ module.exports = {
 
                 await Promise.all(removedFilesPromise)
             }
+            
+            if(req.files.length != 0) {
+                const oldFiles = await Recipes.files(req.body.id)
+                const totalFiles = oldFiles.rows.length + req.files.length
+
+                if(totalFiles <= 6) {
+                    const newFilesPromise = req.files.map(file => File.createRecipeFiles({...file, recipe_id: req.body.id}))
+                    await Promise.all(newFilesPromise)
+                }
+
+            }
+            
             await Recipes.update(req.body)
             
             return res.redirect (`/admin/recipes/${req.body.id}`)

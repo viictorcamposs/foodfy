@@ -37,7 +37,10 @@ const PhotosUpload = {
         const { files: fileList } = event.target
         PhotosUpload.input = event.target
 
-        if(PhotosUpload.hasLimit(event)) return
+        if(PhotosUpload.hasLimit(event)) {
+            PhotosUpload.updateInputFiles()
+            return
+        }
 
         Array.from(fileList).forEach(file => {   
             PhotosUpload.files.push(file)
@@ -53,7 +56,7 @@ const PhotosUpload = {
             reader.readAsDataURL(file)
 
         })
-        PhotosUpload.input.files = PhotosUpload.getAllFiles()
+        PhotosUpload.updateInputFiles()
     },
     hasLimit(event) {
         const { uploadLimit, input, preview } = PhotosUpload
@@ -107,12 +110,14 @@ const PhotosUpload = {
     },
     removePhoto(event) {
         const photoContainer = event.target.parentNode // <div class="photo">
-        const photosArray = Array.from(PhotosUpload.preview.children)
-        const index = photosArray.indexOf(photoContainer)
-
+        const newFiles = Array.from(PhotosUpload.preview.children).filter(file => {
+            if(file.classList.contains('photo') && !file.getAttribute('id')) return true
+        })
+        
+        const index = newFiles.indexOf(photoContainer)
         PhotosUpload.files.splice(index, 1)
-        PhotosUpload.input.files = PhotosUpload.getAllFiles()
 
+        PhotosUpload.updateInputFiles()
         photoContainer.remove()
     },
     removeOldImage(event) {
@@ -124,6 +129,9 @@ const PhotosUpload = {
             }
             imageDiv.remove()
         }
+    },
+    updateInputFiles() {
+        PhotosUpload.input.files = PhotosUpload.getAllFiles()
     }
 }
 

@@ -55,7 +55,7 @@ module.exports = {
     findRecipeFiles(recipe_id) {
         try {
             const query = `
-                SELECT recipes.*, files.path, chefs.name AS chef_name
+                SELECT recipes.*, files.*, chefs.name AS chef_name
                 FROM recipes
                 INNER JOIN recipe_files ON recipes.id = recipe_files.recipe_id
                 INNER JOIN files ON files.id = recipe_files.file_id

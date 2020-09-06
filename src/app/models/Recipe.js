@@ -68,5 +68,14 @@ module.exports = {
     },
     chefSelectOptions () {
         return db.query (`SELECT name, id FROM chefs`)
+    },
+    files(recipe_id) {
+        return db.query(`
+            SELECT files.* 
+            FROM recipes 
+            INNER JOIN recipe_files ON recipe_files.recipe_id = recipes.id
+            INNER JOIN files ON recipe_files.file_id = files.id
+            WHERE recipes.id = $1
+        `,[recipe_id])
     }
 }
