@@ -1,0 +1,19 @@
+{% extends '../layout.njk' %}
+{% import '../parts/search-recipes.njk' as section %}
+
+{% block head %}
+    <link rel="stylesheet" href="/styles/site/index.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="search-block">
+        <form action="/search" method="get">
+            <input type="text" name="filter" class="filter" placeholder="Buscar uma receita" value="{{ filter }}">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    {{section.recipes(filter, recipes)}}
+</main>
+{% endblock %}
