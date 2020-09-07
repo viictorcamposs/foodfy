@@ -1,23 +1,7 @@
-const db = require ( '../../config/db' )
+const db = require('../../config/db')
 
 module.exports = { 
-    home () {
-        return db.query (`
-            SELECT recipes.*, chefs.name AS chef_name
-            FROM recipes
-            LEFT JOIN chefs ON ( recipes.chef_id = chefs.id )
-        `)
-    },
-    findby ( filter ) {
-        return db.query (`
-            SELECT *, chefs.name AS chef_name 
-            FROM recipes
-            LEFT JOIN chefs ON ( recipes.chef_id = chefs.id )
-            WHERE recipes.title ILIKE '%${ filter }%'
-            OR chefs.name ILIKE '%${ filter }%'
-        `)
-    },
-    about () { 
+    about() { 
         const data = [
             {
                 class: "about",
@@ -42,15 +26,7 @@ module.exports = {
             resolve ( data )
         })
     },
-    all () { 
-        return db.query (`
-            SELECT recipes.*, chefs.name AS chef_name 
-            FROM recipes
-            LEFT JOIN chefs ON ( recipes.chef_id = chefs.id )
-            ORDER BY id
-        `)
-    },
-    show ( id ) {
+    show(id) {
         return db.query (`
             SELECT recipes.*, chefs.name AS chef_name 
             FROM recipes 
@@ -58,13 +34,23 @@ module.exports = {
             WHERE recipes.id = $1`
         , [id])
     },
-    allChefs () {
+    allChefs() {
         return db.query (`
             SELECT chefs.*,
             count ( recipes ) AS total_recipes
             FROM chefs
             LEFT JOIN recipes ON ( recipes.chef_id = chefs.id )
             GROUP BY chefs.id
+        `)
+    },
+    search(filter) {
+        return db.query(`
+            SELECT recipes.*, chefs.name AS chef_name 
+            FROM recipes
+            LEFT JOIN chefs ON ( recipes.chef_id = chefs.id )
+            WHERE recipes.title ILIKE '%${filter}%'
+            OR chefs.name ILIKE '%${filter}%'
+            ORDER BY updated_at DESC
         `)
     }
 }

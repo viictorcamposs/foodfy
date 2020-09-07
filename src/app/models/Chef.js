@@ -1,31 +1,31 @@
-const { date } = require ( '../../lib/utils' )
-const db = require ( '../../config/db' )
+const { date } = require('../../lib/utils')
+const db = require('../../config/db')
+const fs = require('fs')
 
-module.exports = { 
-    all () {
-        return db.query (`
-            SELECT chefs.*  
-            FROM chefs
+module.exports = {
+    getAllChefs() {
+        return db.query(`
+            SELECT chefs.* FROM chefs
         `)
     },
-    create ( data, file_id ) {
+    create(data, fileId) {
         const query = `
             INSERT INTO chefs (
                 name,
-                created_at, 
+                created_at,
                 file_id
-            ) VALUES ($1, $2, $3)  
+            ) VALUES ($1, $2, $3) 
             RETURNING id
         `
         const values = [
             data.name,
-            date ( Date.now () ).iso,
-            file_id
+            date(Date.now()).iso,
+            fileId
         ]
-
-        return db.query ( query, values )
+        
+        return db.query(query, values)
     },
-    find ( id ) {
+    find(id) {
         return db.query (`
             SELECT chefs.*,
             count ( recipes ) AS total_recipes
@@ -33,36 +33,45 @@ module.exports = {
             LEFT JOIN recipes ON ( recipes.chef_id = chefs.id )
             WHERE chefs.id = $1
             GROUP BY chefs.id`
-        , [id])
+        , [id])      
     },
-    findRecipe ( id ) {
-        return db.query (`
-            SELECT chefs.name, recipes.title, recipes.id, recipe_files.file_id, files.path 
-            FROM chefs
-            INNER JOIN recipes ON recipes.chef_id = chefs.id
-            INNER JOIN recipe_files ON recipe_files.recipe_id = recipes.id
-            INNER JOIN files ON recipe_files.file_id = files.id
-            WHERE chefs.id = $1`
-        , [id])
+    findRecipes(chefId) {
+        return db.query(`
+            SELECT recipes.* FROM recipes
+            LEFT JOIN chefs ON recipes.chef_id = chefs.id
+            WHERE chefs.id = $1
+            ORDER BY updated_at DESC
+        `, [chefId])
     },
-    update ( data, file_id ) {
+    update(data, fileId) {
         const query = `
-            UPDATE chefs SET 
-                name = ($1),
-                file_id = ($2) 
+            UPDATE chefs SET
+                name = $1,
+                file_id = $2
             WHERE id = $3
         `
         const values = [
             data.name,
-            file_id,
+            fileId,
             data.id
         ]
-        return db.query ( query, values )
+        return db.query(query, values)
     },
-    delete ( id ) {
-        return db.query (`
+    async delete(id) {
+        const result = await db.query(`
+            SELECT files.* FROM files 
+            LEFT JOIN chefs ON chefs.file_id = files.id
+            WHERE chefs.id = $1
+        `, [id])
+        const file = result.rows[0]
+
+        fs.unlinkSync(file.path)
+
+        await db.query (`
             DELETE FROM chefs
             WHERE id = $1`
         , [id])
+        
+        return db.query(`DELETE FROM files WHERE id =$1`, [file.id])
     }
 }

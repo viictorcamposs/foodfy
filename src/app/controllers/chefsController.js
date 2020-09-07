@@ -1,111 +1,112 @@
-const Chefs = require('../models/Chef')
+const { getAllRecipesImage, getAllChefsImage, getChefImage } = require('../../lib/utils')
+const Chef = require('../models/Chef')
 const File = require('../models/File')
 
 module.exports = {
     async index(req, res) {
         try {
-            let results = await Chefs.all()
+            let results = await Chef.getAllChefs()
             const chefs = results.rows
 
-            let ChefsArray = []
-            for (let chef of chefs) {
-                results = await File.findChefFile(chef.id)
-                const result = results.rows[0]
+            if(!chefs) return res.send ('Chefs Not Found!')
 
-                const Chef = {
-                    ...result,
-                    src: `${req.protocol}://${req.headers.host}${result.path.replace('public', '')}`
-                }
-                ChefsArray.push(Chef)
-            }
-            
-            return res.render('admin/chefs/index', {chefs: ChefsArray})
+            const ChefsPromise = chefs.map(async chef => {
+                chef.img = await getAllChefsImage(req, chef.id)
+
+                return chef
+            })
+            results = await Promise.all(ChefsPromise)
+
+            return res.render('admin/chefs/index', {chefs: results})
         } catch (error) {
-            console.log(`Database Error => ${error}`) 
+            console.log(`Database Error => ${error}`)
         }
     },
     create(req, res) {
-        return res.render ( 'admin/chefs/create' )
+        return res.render('admin/chefs/create')
     },
     async post(req, res) {
         try {
-            const keys = Object.keys ( req.body )
-            for ( key of keys ) {
-                if ( req.body[key] == "" ) return res.send ('Por favor, preencha todos os campos!')
+            const keys = Object.keys(req.body)
+            for(key of keys) {
+                if(req.body[key] == "") return res.send('Please, fill all the fields!')
             }
 
-            if(req.file == 0) return res.send('Por favor, envie uma imagem para ser sua foto de perfil!')
-            
+            if(req.file == 0) return res.send('Please, send at least one image')
+
             let results = await File.createChefFile({...req.file})
             const fileId = results.rows[0].id
-            
-            results = await Chefs.create(req.body, fileId)    
+
+            results = await Chef.create(req.body, fileId)
             const chefId = results.rows[0].id
 
             return res.redirect(`/admin/chefs/${chefId}`)
         } catch (error) {
-            console.log (`Database Error => ${error}`)
+            console.log(`Database Error => ${error}`)
         }
     },
-    async show(req, res) {  
+    async show(req, res) {
         try {
-            let results = await Chefs.find(req.params.id) 
+            let results = await Chef.find(req.params.id)
             const chef = results.rows[0]
-    
-            if ( !chef ) return res.send('Chef Not Found!')
 
-            results = await File.findChefFile(req.params.id)
-            let file = results.rows.map(file => ({
-                ...file,
-                src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
-            }))
-    
-            results = await Chefs.findRecipe(req.params.id)
-            const recipes = results.rows.map(file => ({
-                ...file,
-                src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
-            }))
-            
-            return res.render('admin/chefs/show', {chef, recipes, file}) 
+            if(!chef) return res.send('Chef Not Found!')
+
+            results = await File.findChefFile(chef.id)
+            const file = await getChefImage(req, results)
+
+            results = await Chef.findRecipes(req.params.id)
+            let recipes = results.rows
+
+
+
+            const RecipesPromise = recipes.map(async recipe => {
+                recipe.img = await getAllRecipesImage(req, recipe.id)
+
+                return recipe
+            })
+            recipes = await Promise.all(RecipesPromise)
+
+            return res.render('admin/chefs/show', {chef, file, recipes})
         } catch (error) {
-            console.log (`Database Error => ${error}`)
+            console.log(`Database Error => ${error}`)
         }
     },
     async edit(req, res) {
         try {
-            let results = await Chefs.find( req.params.id )
+            let results = await Chef.find(req.params.id)
             const chef = results.rows[0]
-    
-            if ( !chef ) return res.send ('Chef Not Found!')
 
-            return res.render ( 'admin/chefs/edit', { chef })
+            if(!chef) return res.send('Chef Not Found!')
+
+            return res.render('admin/chefs/edit', {chef})
         } catch (error) {
-            console.log(`Database Error => ${error}`) 
+            console.log(`Database Error => ${error}`)
         }
     },
     async put(req, res) {
         try {
-            const keys = Object.keys ( req.body )
-            for ( key of keys ) {
-                if ( req.body[key] == "" ) return res.send('Por favor, preencha todos os campos!')
+            const keys = Object.keys(req.body)
+            for(key of keys) {
+                if(req.body[key] == "") return res.send('Please, fill all the fields!')
             }
 
-            let fileId = []
+            let fileId
             if(req.file != 0) {
-                const results = await File.createChefFile({...req.file})
-                fileId.push(results.rows[0].id) 
+                const result = await File.createChefFile({...req.file})
+                fileId = result.rows[0].id
             }
 
-            await Chefs.update ( req.body, fileId[0] )
+            await Chef.update(req.body, fileId)
 
-            return res.redirect ( `/admin/chefs/${ req.body.id }` )
+            return res.redirect(`/admin/chefs/${req.body.id}`)
         } catch (error) {
-            console.log(`Database Error => ${error}`) 
+            console.log(`Database Error => ${error}`)
         }
     },
     async delete(req, res) {
-        await Chefs.delete ( req.body.id )
+        await Chef.delete(req.body.id)
 
-        return res.redirect ('/admin/chefs')
+        return res.redirect('/admin/chefs')
     }
 } 
