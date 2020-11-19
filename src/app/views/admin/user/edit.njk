@@ -11,7 +11,7 @@
             <div class="header">
                 <h1>Atualizar Usuário</h1>
                 <div class="buttons">
-                    <button type="button" class="addModal">Deletar</button>
+                    <button type="submit" onclick="confirmDelete(event)" form="deleteForm" class="delete-button">Deletar</button>
                     <button type="submit"form="update-user">Salvar</button>
                 </div>
             </div>
@@ -32,8 +32,6 @@
         <form action="/admin/users?_method=DELETE" method="post" id="deleteForm">
             <input type="hidden" name="id" value="{{ user.id }}">
         </form>
-
-        {% include '../parts/modal-delete.njk' %}
     </main>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 const User = require('../models/User')
 const crypto = require('crypto')
-const { hash, compare } = require('bcryptjs')
+const { hash } = require('bcryptjs')
 const mailer = require('../../lib/mailer')
 
 const htmlEmail = (user, token, password) => `
@@ -117,9 +117,10 @@ module.exports = {
         }
     },
     async delete(req, res) {
-        const { id } = req.body
-        await User.delete(id)
+        const { id } = req.body;
 
-        return res.redirect('/admin/users')
+        await User.delete(id);
+
+        return res.redirect('/admin/users');
     }
 }

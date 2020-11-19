@@ -182,4 +182,10 @@ const Validate = {
     }
 }
 
- 
+function confirmDelete(e) {
+    if(confirm('Deseja realmente deletar?')) {
+        e.submit();
+    } else {
+        e.preventDefault();
+    };
+};

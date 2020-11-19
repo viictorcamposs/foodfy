@@ -14,7 +14,7 @@
                 <h1>Editando receita</h1>
                 <div class="buttons">
                     <input type="hidden" name="id" value="{{ recipe.id }}">
-                    <button type="button" class="addModal">Deletar</button>
+                    <button onclick="confirmDelete(event)" type="submit" class="addModal">Deletar</button>
                     <button type="submit" form="update-recipe">Salvar receita</button>
                 </div>
             </div>
@@ -22,9 +22,6 @@
                 {% include './fields.njk' %}
             </fieldset>
         </form>
-
-        {% include '../parts/modal-delete.njk' %}
-       
     </div>
 
 {% endblock%}

@@ -14,7 +14,11 @@
                 <h1>Editando chef</h1>
                 <div class="buttons">
                     <input type="hidden" name="id" value="{{ chef.id }}">
-                    <button type="button" class="addModal">Deletar</button>
+                    {% if recipes.length === 0 %}
+                        <button type="submit" form="deleteForm" class="delete-button" onclick="confirmDelete(event)">Deletar</button>
+                    {% else %}
+                        <button type="button" class="delete-button addModal">Deletar</button>
+                    {% endif %}
                     <button type="submit" form="update-chef">Salvar Chef</button>
                 </div>
             </div>
@@ -22,21 +26,17 @@
                 {% include './fields.njk' %}
             </fieldset>
         </form>
-        {% if recipes.length == 0 %}
-           {% include '../parts/modal-delete.njk' %}
-        {% else %}
-            <div id="modal" class="hide">
-                <div class="modal-content">
-                    <img src="/assets/chef.png" alt="Imagem Foodfy Chef">
-                    <div class="modal-button">
-                        <p>Ops! <br> Não é possível deletar Chefs que possuem receitas.</p>
-                        <div>
-                            <button class="removeModal" type="button">Voltar</button>
-                        </div>
-                        {% include '../parts/confirm.njk' %}
+        <div id="modal" class="hide">
+            <div class="modal-content">
+                <img src="/assets/chef.png" alt="Imagem Foodfy Chef">
+                <div class="modal-button">
+                    <p>Ops! <br> Não é possível deletar Chefs que possuem receitas.</p>
+                    <div>
+                        <button class="removeModal" type="button">Voltar</button>
                     </div>
+                    {% include '../parts/confirm.njk' %}
                 </div>
             </div>
-        {% endif %}
+        </div>
     </div>
 {% endblock%}

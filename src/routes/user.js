@@ -26,7 +26,7 @@ routes
 .get('/profile', onlyUsers, ProfileController.index)
 .put('/profile', UserValidator.update, ProfileController.put)
 
-// ROTAS PARA O ADMIN VISUALIZAR LISTA DOS USUÁRIOS CADASTRADOS
+// ROTA PARA O ADMIN VISUALIZAR LISTA DOS USUÁRIOS CADASTRADOS
 .get('/', onlyUsers, onlyAdm, UserController.index)
 
 // ROTAS PARA CRIAR USUÁRIOS

@@ -158,9 +158,9 @@ main .header .buttons button:hover {
 }
 
 /* UPDATE USER PAGE */
-.header .buttons button.addModal {
+.header .buttons button.delete-button {
     background-color: #DC4747;
 }
-.header .buttons button.addModal:hover {
+.header .buttons button.delete-button:hover {
     background-color: #be2c2c;
 }

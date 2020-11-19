@@ -1,38 +1,35 @@
 {% extends '../layout.njk' %} 
 {% block head %}
-    <link rel="stylesheet" href="/styles/admin/users.css">
+	<link rel="stylesheet" href="/styles/admin/users.css">
 {% endblock %}
 
 {% block content %}
-    <main id="content">
-        <div id="main-content">
-            <div class="header">
-                <h1>Usuários</h1>
-                <a href="/admin/users/register" class="new user">Novo</a>
-            </div>
+	<main id="content">
+		<div id="main-content">
+			<div class="header">
+				<h1>Usuários</h1>
+				<a href="/admin/users/register" class="new user">Novo</a>
+			</div>
 
-            <main>
-                <div class="user-section">
-                    {% for user in users %}
-                        <div class="user-card"> 
-                            <div>
-                                <h2>{{ user.name }}</h2>
-                            </div>
-                            <div>
-                                <p>{{ user.email }}</p>
-                            </div>
-                            <div class="options">
-                                <a href="/admin/users/{{ user.id }}">Editar</a>
-                                <form action="/admin/users?_method=DELETE" id="deleteForm" method="post">
-                                    <input type="hidden" name="id" value="{{ user.id }}">
-                                    <button type="button" class="addModal">Remover</button>
-                                </form>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </main>
-        </div>
-    </main>
-    {% include '../parts/modal-delete.njk' %}
+			<div class="user-section">
+				{% for user in users %}
+					<div class="user-card"> 
+						<div>
+							<h2>{{ user.name }}</h2>
+						</div>
+						<div>
+							<p>{{ user.email }}</p>
+						</div>
+						<div class="options">
+							<a href="/admin/users/{{ user.id }}">Editar</a>
+							<form action="/admin/users?_method=DELETE" id="deleteForm" method="post">
+								<input type="hidden" name="id" value="{{ user.id }}">
+								<button onclick="confirmDelete(event)" type="submit" class="addModal">Remover</button>
+							</form>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</main>
 {% endblock %}

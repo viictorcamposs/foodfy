@@ -34,13 +34,13 @@
 /* STYLE DO MODAL */
 
 button[form="deleteForm"],
-button.addModal {
+button.delete-button {
     background-color: #dc4747;
     padding: 9px 22px;
     margin-right: 5px;
 }
 button[form="deleteForm"]:hover,
-button.addModal:hover {
+button.delete-button:hover {
     background-color: #be2c2c;
 }
 #modal {
