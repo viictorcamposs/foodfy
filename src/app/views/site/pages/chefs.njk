@@ -1,0 +1,31 @@
+{% extends '../layout.njk' %}
+
+{% block head %}
+    <link rel="stylesheet" href="/styles/site/chefs.css">
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="chef-cards">
+            {% for chef in chefs %}
+                <div class="chef-card">
+                    <div class="chef-avatar">
+                        <img src="{{ chef.img }}" alt="Chef {{ chef.name }}">
+                    </div>
+                    <div class="chef-content">
+                        <p>{{ chef.name }}</p>
+                        <p> 
+                            {% if chef.recipes.length == 1 %}
+                            {{ chef.recipes.length }} receita 
+                            {% elif chef.recipes.length > 1 %}
+                            {{ chef.recipes.length }} receitas
+                            {% else %}
+                                Sem receita
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

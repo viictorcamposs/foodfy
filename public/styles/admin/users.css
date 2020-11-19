@@ -1,0 +1,166 @@
+* {
+    outline: none;
+}
+
+main {
+    width: 940px;
+    margin: 0 auto;
+    background-color: white;
+}
+main .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    margin-top: 30px;
+}
+main .header h1 {
+    font-size: 24px;
+}
+main .header .buttons a {
+    background-color: #8a8a8a;
+    padding: 8px 24px;
+    color: white;
+    border-radius: 4px;
+    transition: .2s;
+}
+main .header .buttons button {
+    background-color: #6558C3;
+    padding: 8px 0;
+    width: 120px;
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: .2s;
+    cursor: pointer;
+}
+main .header .buttons button:nth-child(1) {
+    margin-right: 8px;
+}
+main .header .buttons a:hover {
+    background-color: #6b6b6b;
+}
+main .header .buttons button:hover {
+    background-color: #3b2da5;
+}
+
+/* FIELDS REGISTER */
+.fields {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+}
+.item > div {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+.item input {
+    width: 100%;
+    height: 45px;
+    border: 1px solid #ddd;
+    padding-left: 16px;
+    font-size: 16px;
+    outline: none;
+}
+.item > div.password {
+    margin-top: 24px;
+}
+.item input[type="password"] {
+    width: 453px;
+}
+.checkbox {
+    display: flex;
+    align-items: center;
+    width: 125px;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 32px;
+}
+.checkbox input {
+    height: 15px;
+    width: 15px;
+}
+/* VALIDATE EMAIL ERROR */
+.input .error {
+    background-color: #DC4747;
+    color: white;
+    padding: 4px 16px;
+    border-radius: 4px;
+}
+
+
+
+/* USERS LIST PAGE */
+.header a.new.user {
+    background-color: #6558C3;
+    padding: 8px 0;
+    width: 120px;
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 8px;
+    transition: .2s;
+    cursor: pointer;
+    text-align: center;
+}
+.header a.new.user:hover {
+    background-color: #3b2da5;
+}
+
+.user-section {
+    margin-top: 5%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 200px;
+    row-gap: 54px;
+}
+.user-section .user-card h2 {
+    font-size: 18px;
+    line-height: 22px;
+    color: #111;
+    font-weight: normal;
+}
+.user-section .user-card p {
+    color: #777;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: .5vh;
+}
+.user-section .user-card .options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    width: 115px;
+    margin-top: 2vh;
+}
+.user-section .user-card .options a {
+    color: #6558C3;
+    font-size: 14px;
+    letter-spacing: .6px;
+    letter-spacing: .6px;
+    line-height: 17px;
+}
+.user-section .user-card .options button {
+    color: #F55A5A;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: bold;
+    background: none;
+    cursor: pointer;
+    letter-spacing: .6px;
+    display: flex;
+}
+
+/* UPDATE USER PAGE */
+.header .buttons button.addModal {
+    background-color: #DC4747;
+}
+.header .buttons button.addModal:hover {
+    background-color: #be2c2c;
+}

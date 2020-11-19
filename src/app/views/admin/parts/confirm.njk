@@ -1,0 +1,17 @@
+<script>
+    // CÓDIGO PARA ADICIONAR MODAL DE CONFIRMAÇÃO NA HORA DE DELETAR RECEITAS E CHEF
+    const modal = document.getElementById('modal')
+    const addModal = document.querySelectorAll('button.addModal')
+    const removeModal = document.querySelectorAll('#modal .removeModal')
+
+    for(let button of addModal) {
+        button.addEventListener('click', () => {
+            modal.classList.remove ('hide' )
+        })
+    }
+    for(let button of removeModal) {
+        button.addEventListener('click', () => {
+            modal.classList.add('hide')
+        })
+    }
+</script>

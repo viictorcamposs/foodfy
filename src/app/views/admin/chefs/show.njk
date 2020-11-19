@@ -1,0 +1,52 @@
+{% extends '../layout.njk' %}
+{% block head %}
+    <link rel="stylesheet" href="/styles/admin/show.css">
+{% endblock %}
+
+{% block content %}
+    <div id="main-content">
+        <div class="header">
+            <h1>Chef: {{ chef.name }}</h1>
+            <a href="/admin/chefs/{{ chef.id }}/edit">Editar Chef</a>
+        </div>
+        <section>
+            <div class="avatar chefTitle">
+                <img src="{{ chef.img }}" alt="Imagem de {{chef.name}}">
+                <h1>{{ chef.name }}</h1>
+                <p> 
+                    {% if recipes.length > 1 %}
+                        {{ recipes.length }} receitas
+                    {% elif recipes.length == 0 %}
+                        Nenhuma receita cadastrada.
+                    {% else %}
+                        {{ recipes.length }} receita
+                    {% endif %}
+                </p>
+            </div>
+            <div class="chef-recipes">
+                    {% if recipes.length > 0 %}
+                        <h1>Receitas</h1>
+                        <div class="recipesCard">
+                            {% for recipe in recipes %}
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img src="{{ recipe.img }}" alt="Imagem da receita {{ recipe.title }}">
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-title">
+                                            <p>{{ recipe.title }}</p>
+                                        </div>
+                                        <div class="card-info">
+                                            <p>por {{ recipe.chef.name }}</p>
+                                            <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                    {% endif %}
+            </div>
+        </section>
+    </div>
+{% endblock %}

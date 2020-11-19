@@ -1,0 +1,25 @@
+header nav .links a.selected { 
+    font-weight: bold;
+}
+/* ==================== */
+
+main { 
+    width: 940px;
+    margin: 20px auto;
+}
+main h2 {
+    margin-bottom: 20px;
+    color: #111;
+    line-height: 28px;
+    font-size: 24;
+}
+main p {
+    margin-top: 20px;
+    line-height: 28px;
+    font-size: 18px;
+    color: #444;
+}
+main div.story,
+main div.recipes {
+    margin-top: 30px;
+}

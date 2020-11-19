@@ -1,0 +1,23 @@
+{% extends './layout.njk' %}
+
+{% block content %}
+
+    <section>
+        <form action="/admin/users/login" method="post">
+            <div class="login">
+                {% include '../parts/messages.njk' %}
+                <header>
+                    <h1>Iniciar Sessão</h1>
+                </header>
+
+                {% include './fields.njk' %}
+
+                <footer>
+                    <a href="/admin/users/forgot-password">Perdeu a senha?</a>
+                    <button type="submit">Entrar</button>
+                </footer>
+            </div>
+        </form>
+    </section>
+
+{% endblock%}

@@ -1,0 +1,214 @@
+a { 
+    text-decoration: none;
+    font-weight: bold;
+}
+.main-content {
+    width: 940px;
+    margin: 0 auto;
+}
+.main-content .header {
+    height: 80px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header h1 {
+    color: #111;
+    font-size: 24px;
+    line-height: 28px;
+}
+.header button {
+    background-color: #6558c3;
+    font-size: 16px;
+    line-height: 19px;
+    color: whitesmoke;
+    padding: 9px 18px;
+    border-radius: 4px;
+    transition: 300ms;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+}
+.header button:hover {
+    background-color: #4b3ead;
+}
+fieldset .input-block,
+.textarea-block {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+}
+fieldset .input-block:first-child {
+    margin-top: 0;
+}
+fieldset .input-block label,
+.textarea-block label {
+    color: #111;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+/* photos item style */
+.input-block .photos-field {
+    display: flex;
+}
+.input-block #photos-upload {
+    position: relative;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.input-block #photos-upload #photos-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.input-block #photos-upload i {
+    position: absolute;
+
+    color: #777;
+    font-size: 50px;
+    font-weight: normal;
+    cursor: pointer;
+    z-index: -10;
+}
+.input-block #photos-preview {
+    display: flex;
+}
+.input-block #photos-preview .photo {
+    position: relative;
+    margin-left: 7px;
+}
+.input-block #photos-preview .photo img {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0px 0px 8px -2px rgba(0,0,0,.7);
+    transition: 200ms;
+}
+.input-block #photos-preview .photo i {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    
+    background-color: rgba(255,255,255, .5);    
+    color: #ec2626;
+    font-size: 50px;
+
+    transition: 200ms;
+    opacity: 0;
+    cursor: pointer;
+}
+.input-block #photos-preview .photo i:hover {
+    opacity: 1;
+}
+
+
+.input-block input,
+.input-block select {
+    width: 100%;
+    outline: none;
+    border-radius: 4px;
+    height: 49px;
+    padding-left: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 6px -6px black;
+    font-size: 16px;
+    line-height: 19px;
+    color: #111;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+.input-block button.add-ingredient,
+.input-block button.add-preparation {
+    font-weight: bold;
+    color: #6558c3;
+    font-size: 16px;
+    line-height: 19px;
+    background-color: white;
+    cursor: pointer;
+    margin-top: 12px;
+    text-align: left;
+    outline: none;
+    transition: 300ms;
+}
+.input-block button.add-ingredient:hover,
+.input-block button.add-preparation:hover {
+    color: #4b3ead;
+}
+.textarea-block textarea {
+    width: 100%;
+    height: 257px;
+    border: 1px solid #ddd;
+    outline: none;
+    margin-bottom: 50px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 6px -6px black;
+    font-size: 16px;
+    line-height: 19px;
+    color: #111;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+/* chef field style */
+.input-block .photo-upload {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    
+    width: 140px;
+}
+.input-block input[type="file"]#photo-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    cursor: pointer;
+}
+.input-block .photo-upload p {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #6558C3;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;
+}

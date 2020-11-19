@@ -1,0 +1,59 @@
+/* PÁGINA COM DETALHE DE CADA RECEITA */
+section.detailPage { 
+    width: 940px;
+    margin: 0 auto 50px;
+}
+.avatar.recipeTitle {
+    text-align: center;
+}
+.avatar.recipeTitle img {
+    border-radius: 15px;
+    border: 1px solid white;
+    width: 940px;
+    height: 286px;
+    object-fit: cover;
+    box-shadow: 0px 0px 6px -1px rgba(1, 1, 1, 0.8);
+}
+.avatar.recipeTitle h1 {
+    font-size: 36px;
+    line-height: 42px;
+    color: #111;
+    margin-top: 35px;
+}
+.avatar.recipeTitle p {
+    font-size: 20px;
+    line-height: 24px;
+    color: #777;
+    margin-top: 5px;
+}
+.recipeHeader {
+    display: flex;
+    margin-bottom: 25px;
+    margin-top: 35px;
+    align-items: center;
+}
+.recipeHeader h1 {
+    font-size: 24px;
+    line-height: 34px;
+    color: #111;
+}
+.recipeHeader span {
+    font-size: 14px;
+    line-height: 16px;
+    color: #999;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.content {
+    display: none;
+}
+.content.showContent {
+    font-size: 18px;
+    line-height: 28px;
+    color: #444;
+    display: contents;
+}
+.content.showContent p {
+    padding-bottom: 5px;
+}

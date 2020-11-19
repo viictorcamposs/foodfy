@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        {% block head %}
+            <title>Foodfy</title>
+        {% endblock %}
+
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/site/session.css">
+        <link rel="stylesheet" href="/styles/admin/messages.css">
+        
+    </head>
+    
+    <body>
+        {% include '../parts/messages.njk' %}
+        <header>
+            <div class="header">
+                <a href="/"><img src="/assets/logo.png" alt="Logomarca Foodfy"></a>
+            </div>
+        </header>
+
+        {% block content %}{% endblock %}
+        
+    </body>
+</html>

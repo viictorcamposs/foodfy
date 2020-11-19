@@ -1,0 +1,39 @@
+{% extends '../layout.njk' %}
+
+{% block head %}
+    <link rel="stylesheet" href="/styles/admin/users.css"> 
+{% endblock %}
+
+{% block content %}
+
+    <main>
+        <form id="update-user" action="/admin/users?_method=PUT" method="post">
+            <div class="header">
+                <h1>Atualizar Usuário</h1>
+                <div class="buttons">
+                    <button type="button" class="addModal">Deletar</button>
+                    <button type="submit"form="update-user">Salvar</button>
+                </div>
+            </div>
+
+            {% include './fields.njk' %} 
+            <input type="hidden" name="id" value="{{ user.id }}">
+
+            <div class="checkbox">
+                <input 
+                    type="checkbox" 
+                    name="is_admin"
+                    {% if user.is_admin == true %}
+                    checked
+                    {% endif %}>
+                <label for="is_admin">Administrador</label>
+            </div>
+        </form>
+        <form action="/admin/users?_method=DELETE" method="post" id="deleteForm">
+            <input type="hidden" name="id" value="{{ user.id }}">
+        </form>
+
+        {% include '../parts/modal-delete.njk' %}
+    </main>
+
+{% endblock %}

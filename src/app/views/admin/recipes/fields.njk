@@ -1,0 +1,85 @@
+<div class="input-block">
+    <label>Imagem da receita</label>
+    <div class="photos-field">
+        <div id="photos-upload">
+            <input
+                id="photos-input" 
+                type="file" 
+                name="photos" 
+                multiple
+                accept="image/*"
+                onchange="PhotosUpload.handleFileInput(event)"
+            >
+            <i class="material-icons">add</i>
+        </div>
+        <div id="photos-preview">
+            {% if recipe.files %}
+                {% for image in recipe.files %}
+                    <div class="photo" id="{{ image.id }}">
+                        <img src="{{ image.src }}" alt="Imagem da receita: {{ recipe.title }}">
+                        <i class="material-icons" onclick="PhotosUpload.removeOldImage(event)">delete</i>
+                    </div>
+                {% endfor %}
+                <input type="hidden" name="removed_files">
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="input-block">
+    <label for="title">Título da receita</label>
+    <input type="text" name="title" value="{{ recipe.title }}" required>
+</div>
+
+<div class="input-block">
+    <label>Chef</label>
+    <select name="chef_id">
+        {% for chef in chefOptions %}
+            <option value="{{ chef.id }}" 
+                {% if recipe.chef_id == chef.id %}
+                    selected
+                {% endif %}>
+                {{ chef.name }}
+            </option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="input-block">
+    <label for="ingredients">Ingredientes</label>
+    <div id="ingredients">
+        {% for ingredient in recipe.ingredients %}
+            <div class="ingredient">
+                <input type="text" name="ingredients[]" value="{{ ingredient }}">
+            </div>
+        {% endfor %}
+        {% if not recipe %}
+            <div class="ingredient">
+                <input type="text" name="ingredients[]">
+            </div>
+        {% endif %}
+    </div>
+    <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+</div>
+
+<div class="input-block">
+    <label for="preparations">Modo de preparo</label>
+    <div id="preparations">
+        {% for preparation in recipe.preparations %}
+            <div class="preparation">
+                <input type="text" name="preparations[]" value="{{ preparation }}">
+            </div>
+        {% endfor %}
+        {% if not recipe %}
+            <div class="preparation">
+                <input type="text" name="preparations[]">
+            </div>
+        {% endif %}
+    </div>
+    <button type="button" class="add-preparation">Adicionar novo passo</button>
+</div>
+
+<div class="textarea-block">
+    <label for="information">Informações adicionais</label>
+    <textarea name="information" cols="30" rows="10">{{ recipe.information }}</textarea>
+</div>
