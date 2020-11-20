@@ -57,8 +57,12 @@ module.exports = {
             })
         
             // ENVIAR MENSAGEM DE SUCESSO PARA O USUÁRIO
-            return res.render('admin/session/forgot-password', {
-                success: 'Email enviado com sucesso. Verifique sua conta para continuar o procedimento de atualização de senha.'
+            return res.render('admin/parts/animation', {
+                animation: 'email',
+                mainMessage: 'Recuperação de senha solicitada!',
+                message: 'Verifique seu email para continuar o processo.',
+                button: 'Voltar para o login',
+                link: '/admin/users/login'
             })
         } catch (error) {
             console.error(error)

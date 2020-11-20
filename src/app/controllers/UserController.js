@@ -71,8 +71,12 @@ module.exports = {
             })
 
             // RETORNAR MENSAGEM DE SUCESSO PARA O USUÁRIO
-            return res.render('admin/user/animation', {
-                animation: 'success'
+            return res.render('admin/parts/animation', {
+                animation: 'success',
+                mainMessage: 'Usuário cadastrado com sucesso!',
+                message: 'Senha enviada para email.',
+                button: 'Ver lista de usuários',
+                link: '/admin/users'
             }) 
         } catch (error) {
             console.error(error)
@@ -120,8 +124,11 @@ module.exports = {
 
         await User.delete(id);
 
-        return res.render('admin/user/animation', {
-            animation: 'deleted'
-        })    
+        return res.render('admin/parts/animation', {
+            animation: 'deleted',
+            mainMessage: 'Usuário removido do sistema!',
+            button: 'Ver lista de usuários',
+            link: '/admin/users'
+        }) 
     }
 }

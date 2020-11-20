@@ -1,7 +1,18 @@
-{% extends '../layout.njk' %}
+{% if animation === 'email' %} 
+	{% extends '../session/layout.njk' %}
+{% else %}
+	{% extends '../layout.njk' %}
+{% endif %}
 
 {% block content %}
 	<div class="{{animation}}-lottie"></div>
+	<div class="animation-content">
+		<h2>{{ mainMessage }}</h2>
+		{% if message %} 
+			<p>{{ message }}</p>
+		{% endif %}
+		<a href="{{ link }}">{{ button }}</a> 
+	</div>
 	
 	<script src="/animation/lottie.min.js"></script>
 	{% if animation === 'success' %}
@@ -28,7 +39,7 @@
 				path: '/animation/deleted.json'
 			})
 		</script>
-	{% else %}
+	{% elseif animation === 'email' %}
 		<script>
 			const element = document.querySelector('.{{animation}}-lottie')
 
@@ -37,7 +48,7 @@
 				renderer: 'svg',
 				loop: false,
 				autoplay: true,
-				path: '/animation/blocked.json'
+				path: '/animation/email.json'
 			})
 		</script>
 	{% endif %}

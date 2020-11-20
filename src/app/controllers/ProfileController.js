@@ -23,10 +23,12 @@ module.exports = {
             })
         
             // RETORNAR MENSAGEM DE SUCESSO
-            return res.render('admin/user/index', {
-                user: req.body,
-                success: 'Conta atualizada com sucesso.'
-            })
+            return res.render('admin/parts/animation', {
+                animation: 'success',
+                mainMessage: 'Usuário atualizado com sucesso!',
+                button: 'Ver lista de usuários',
+                link: '/admin/users'
+            }) 
         } catch (error) {
             console.error(error)
             return res.render('admin/user/index', {

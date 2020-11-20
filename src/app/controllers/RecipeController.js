@@ -60,9 +60,13 @@ module.exports = {
             await Promise.all(filesPromise)
     
             // REDIRECIONAR PARA PÁGINA DA RECEITA CRIADA
-            return res.render('admin/user/animation', {
-                animation: 'success'
-            })
+            return res.render('admin/parts/animation', {
+                animation: 'success',
+                mainMessage: 'Receita cadastrada com sucesso!',
+                message: 'Você já pode começar a enviar sua nova receita para seus amigos.',
+                button: 'Ver lista de receitas',
+                link: '/admin/recipes'
+            }) 
         } catch (error) {
             console.error(error)
             // CASO OCORRA ALGUM ERRO NA CRIAÇÃO, ENVIAR MENSAGEM PARA O USUÁRIO
@@ -143,9 +147,13 @@ module.exports = {
                 information
             })
 
-            return res.render('admin/user/animation', {
-                animation: 'success'
-            })
+            return res.render('admin/parts/animation', {
+                animation: 'success',
+                mainMessage: 'Receita atualizada com sucesso!',
+                message: 'Envie sua atualização para seus amigos.',
+                button: 'Ver lista de receitas',
+                link: '/admin/recipes'
+            }) 
         } catch (error) {
             console.error(error)
             return res.render('admin/recipes/edit', {
@@ -174,9 +182,12 @@ module.exports = {
                 }
             })
 
-            return res.render('admin/user/animation', {
+            return res.render('admin/parts/animation', {
                 animation: 'deleted',
-            })
+                mainMessage: 'Receita removida do sistema!',
+                button: 'Ver lista de receitas',
+                link: '/admin/recipes'
+            }) 
         } catch (error) {
             console.error(error)
             return res.render('admin/recipes/edit', {
