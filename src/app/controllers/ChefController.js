@@ -28,10 +28,7 @@ module.exports = {
             })
     
             // CRIAR CHEF
-            const chef_id = await Chef.create({
-                name,
-                file_id
-            })
+            await Chef.create({ name, file_id })
     
             // REDIRECIONAR PARA PÁGINA DO CHEF CRIADO
             return res.render('admin/user/animation', {
