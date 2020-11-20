@@ -6,12 +6,14 @@ module.exports = {
             for(key of keys) {
                 if(req.body[key] == "") {
                     return res.render('admin/recipes/create', {
+                        recipe: {...req.body},
                         error: 'Preencha todos os campos.'
                     })
                 } 
             }
     
             if(req.files.length == 0) return res.render('admin/recipes/create', {
+                recipe: {...req.body},
                 error: 'Envie pelo menos 1 imagem da sua receita.'
             })
     

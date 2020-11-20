@@ -99,7 +99,8 @@ module.exports = {
         if(recipe.user_id == user.id) {
             next()
         } else {
-            return res.render('admin/user/error', {
+            return res.render('admin/user/animation', {
+                animation: 'block',
                 error: 'Apenas administradores podem ver as receitas de outros usuários.'
             })
         }

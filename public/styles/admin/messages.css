@@ -141,8 +141,18 @@ button.delete-button:hover {
 }
 
 /* LOTTIE MESSAGE */
-.error-lottie {
+.block-lottie {
     width: 40%;
+    margin: auto;
+    z-index: -10;
+}
+.success-lottie {
+    width: 40%;
+    margin: auto;
+    z-index: -10;
+}
+.deleted-lottie {
+    width: 30%;
     margin: auto;
     z-index: -10;
 }

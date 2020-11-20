@@ -2,16 +2,23 @@
 	<div>Email</div>
 	<div class="input">
 		<input 
-		type="email" 
-		name="email" 
-		value="{{ user.email }}"
-		onblur="Validate.apply(this, 'isEmail')">
+			type="email" 
+			name="email" 
+			value="{{ user.email }}"
+			onblur="Validate.apply(this, 'isEmail')"
+			{% if error %}
+				class="error"
+			{% endif %}
+			>
 	</div> 
 </div>
 
 <div class="item">
     <div>Senha</div>
     <div class="input">
-        <input type="password" name="password"> 
+				<input type="password" name="password"
+				{% if error %}
+				class="error"
+			{% endif %}> 
     </div> 
 </div>

@@ -34,7 +34,9 @@ module.exports = {
             })
     
             // REDIRECIONAR PARA PÁGINA DO CHEF CRIADO
-            return res.redirect(`/admin/chefs/${chef_id}`)
+            return res.render('admin/user/animation', {
+                animation: 'success'
+            })
         } catch (error) {
             console.error(error)
             return res.render('admin/chefs/create', {
@@ -99,7 +101,9 @@ module.exports = {
                 file_id 
             })
             
-            return res.redirect(`/admin/chefs/${id}`)
+            return res.render('admin/user/animation', {
+                animation: 'success'
+            })
         } catch (error) {
             console.error(error)
         }      
@@ -118,7 +122,9 @@ module.exports = {
             await Chef.delete(id)
             
             // REDIRECIONAR PARA PÁGINA DE LISTA DOS CHEFS
-            return res.redirect('/admin/chefs')
+            return res.render('admin/user/animation', {
+                animation: 'deleted'
+            })
         } catch (error) {
             console.error(error)
             return res.render('admin/chefs/edit', {

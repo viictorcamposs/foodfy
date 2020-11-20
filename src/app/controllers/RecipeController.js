@@ -60,7 +60,9 @@ module.exports = {
             await Promise.all(filesPromise)
     
             // REDIRECIONAR PARA PÁGINA DA RECEITA CRIADA
-            return res.redirect(`/admin/recipes/${recipe_id}`)
+            return res.render('admin/user/animation', {
+                animation: 'success'
+            })
         } catch (error) {
             console.error(error)
             // CASO OCORRA ALGUM ERRO NA CRIAÇÃO, ENVIAR MENSAGEM PARA O USUÁRIO
@@ -141,7 +143,9 @@ module.exports = {
                 information
             })
 
-            return res.redirect(`/admin/recipes/${req.body.id}`)
+            return res.render('admin/user/animation', {
+                animation: 'success'
+            })
         } catch (error) {
             console.error(error)
             return res.render('admin/recipes/edit', {
@@ -170,7 +174,9 @@ module.exports = {
                 }
             })
 
-            return res.redirect('/admin/recipes')
+            return res.render('admin/user/animation', {
+                animation: 'deleted',
+            })
         } catch (error) {
             console.error(error)
             return res.render('admin/recipes/edit', {

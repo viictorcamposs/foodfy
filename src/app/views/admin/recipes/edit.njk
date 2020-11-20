@@ -14,7 +14,12 @@
                 <h1>Editando receita</h1>
                 <div class="buttons">
                     <input type="hidden" name="id" value="{{ recipe.id }}">
-                    <button onclick="confirmDelete(event)" type="submit" class="addModal">Deletar</button>
+                    <button 
+                        form="deleteForm"
+                        onclick="confirmDelete(event)" 
+                        type="submit" 
+                        class="delete-button"
+                    >Deletar</button>
                     <button type="submit" form="update-recipe">Salvar receita</button>
                 </div>
             </div>

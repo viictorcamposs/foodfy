@@ -62,6 +62,11 @@ section {
     padding-left: 12px;
     outline: none;
 }
+.login .item .input input.error,
+.forgot-password .item .input input.error {
+    border: 1px solid #dd4040;
+}
+
 .login footer,
 .forgot-password footer {
     width: 100%;

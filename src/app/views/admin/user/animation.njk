@@ -1,0 +1,44 @@
+{% extends '../layout.njk' %}
+
+{% block content %}
+	<div class="{{animation}}-lottie"></div>
+	
+	<script src="/animation/lottie.min.js"></script>
+	{% if animation === 'success' %}
+		<script>
+			const element = document.querySelector('.{{animation}}-lottie')
+
+			lottie.loadAnimation({
+				container: element,
+				renderer: 'svg',
+				loop: false,
+				autoplay: true,
+				path: '/animation/success-animation.json'
+			})
+		</script>
+	{% elseif animation === 'deleted' %}
+		<script>
+			const element = document.querySelector('.{{animation}}-lottie')
+
+			lottie.loadAnimation({
+				container: element,
+				renderer: 'svg',
+				loop: false,
+				autoplay: true,
+				path: '/animation/deleted.json'
+			})
+		</script>
+	{% else %}
+		<script>
+			const element = document.querySelector('.{{animation}}-lottie')
+
+			lottie.loadAnimation({
+				container: element,
+				renderer: 'svg',
+				loop: false,
+				autoplay: true,
+				path: '/animation/blocked.json'
+			})
+		</script>
+	{% endif %}
+{% endblock %}

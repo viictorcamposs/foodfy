@@ -71,8 +71,8 @@ module.exports = {
             })
 
             // RETORNAR MENSAGEM DE SUCESSO PARA O USUÁRIO
-            return res.render('admin/user/register', {
-                success: 'Usuário cadastrado com sucesso.'
+            return res.render('admin/user/animation', {
+                animation: 'success'
             }) 
         } catch (error) {
             console.error(error)
@@ -104,9 +104,8 @@ module.exports = {
                 is_admin: is_admin || false
             })
 
-            return res.render('admin/user/edit', {
-                user: req.body,
-                success: 'Conta atualizada com sucesso.'
+            return res.render('admin/user/animation', {
+                animation: 'success'
             })
         } catch (error) {
             console.error(error)
@@ -121,6 +120,8 @@ module.exports = {
 
         await User.delete(id);
 
-        return res.redirect('/admin/users');
+        return res.render('admin/user/animation', {
+            animation: 'deleted'
+        })    
     }
 }
