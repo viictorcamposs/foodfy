@@ -32,3 +32,16 @@ for ( let i = 0; i < detail.length; i++ ) {
         }
     })
 }
+// LÓGICA PARA TROCAR IMAGENS DA GALERIA NA PÁGINA DE DETALHES DAS RECEITAS
+const ImageGallery = {
+    highlight: document.querySelector('.gallery .highlight > img'),
+    previews: document.querySelectorAll('.gallery-preview img'),
+    setImage(event) {
+        const { target } = event
+
+        ImageGallery.previews.forEach(preview => preview.classList.remove('active'))
+        target.classList.add('active')
+
+        ImageGallery.highlight.src = target.src
+    }
+}
